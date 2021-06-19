@@ -18,7 +18,7 @@ class BugService {
   }
 
   async createBug(body) {
-    const res = await api.post(body)
+    const res = await api.post('api/bugs', body)
     AppState.bugs.push(res.data)
   }
 
