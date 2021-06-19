@@ -1,33 +1,29 @@
 <template>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-bug-modal">
-    Report Bug
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-note-modal">
+    add note
   </button>
 
   <!-- Modal -->
-  <div class="modal fade" id="create-bug-modal" tabindex="-1" aria-labelledby="create-bug-modalLabel" aria-hidden="true">
+  <div class="modal fade" id="create-note-modal" tabindex="-1" aria-labelledby="create-note-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-secondary">
-          <h5 class="modal-title" id="create-bug-modalLabel">
-            Report Bug
+          <h5 class="modal-title" id="create-note-modalLabel">
+            New Note
           </h5>
           <button type="button" title="close" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="createBug">
+          <form @submit.prevent="createNote">
             <div class="form-group">
-              <label class="sr-only" for="bug title"></label>
-              <input v-model="state.newBug.title" type="text" placeholder="Title here..." required>
-            </div>
-            <div class="form-group">
-              <label class="sr-only" for="bug description"></label>
-              <input v-model="state.newBug.description" type="text" placeholder="Description here..." required>
+              <label class="sr-only" for="note title"></label>
+              <input v-model="state.newNote.body" type="text" placeholder="Title here..." required>
             </div>
             <button type="submit" class="btn btn-primary">
-              Report Bug
+              create note
             </button>
           </form>
         </div>
@@ -45,27 +41,23 @@
 import { reactive } from '@vue/reactivity'
 import { AppState } from '../AppState'
 import $ from 'jquery'
-import { bugService } from '../services/bugService'
+import { noteService } from '../services/noteService'
 import Notification from '../utils/Notification'
-import { useRouter } from 'vue-router'
 export default {
   setup() {
-    const router = useRouter()
     const state = reactive({
-      newBug: {
+      newNote: {
         creator: AppState.account
       }
     })
     return {
       state,
-      async createBug() {
+      async createnote() {
         try {
-          const bug = await bugService.createBug(state.newBug)
-          $('#create-bug-modal').modal('hide')
-          state.newBug.title = ''
-          state.newBug.description = ''
-          console.log(bug)
-          router.push(`/bug/${bug.id}`)
+          const note = await noteService.createNote(state.newNote)
+          $('#create-note-modal').modal('hide')
+          state.newNote.body = ''
+          console.log(note)
         } catch (error) {
           Notification.toast(error.message)
         }

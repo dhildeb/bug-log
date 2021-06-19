@@ -11,8 +11,10 @@
       <div class="col-3 border bg-secondary shadow rounded p-1">
         <b>reported by</b>
       </div>
-      <div class="col-3 border bg-secondary shadow rounded p-1">
-        <b>status</b>
+      <div class="col-3 click border bg-secondary shadow rounded p-1"
+           @click="filterStatus"
+      >
+        <b>status <i class="mdi mdi-filter-variant" aria-hidden="true"></i></b>
       </div>
       <div class="col-2 border bg-secondary shadow rounded p-1">
         <b>last modified</b>
@@ -30,13 +32,30 @@ watchEffect(() => {
   bugService.getAll()
 })
 export default {
-  name: 'AboutPage',
+  name: 'BugsPage',
   setup() {
     const state = reactive({
-      bugs: computed(() => AppState.bugs)
+      bugs: computed(() => AppState.bugs),
+      filterStatus: 0
     })
     return {
-      state
+      state,
+      async filterStatus() {
+        if (state.filterStatus === 2) {
+          await bugService.getAll('')
+          state.filterStatus = 0
+          return
+        }
+        if (state.filterStatus === 0) {
+          await bugService.getAll('?closed=true')
+          state.filterStatus = 1
+          return
+        }
+        if (state.filterStatus === 1) {
+          await bugService.getAll('?closed=false')
+          state.filterStatus = 2
+        }
+      }
     }
   }
 }

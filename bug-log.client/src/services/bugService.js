@@ -3,7 +3,7 @@ import { api } from './AxiosService'
 
 class BugService {
   async getAll(query = '') {
-    const res = await api.get('api/bugs', query)
+    const res = await api.get('api/bugs/' + query)
     AppState.bugs = res.data
   }
 
@@ -20,6 +20,7 @@ class BugService {
   async createBug(body) {
     const res = await api.post('api/bugs', body)
     AppState.bugs.push(res.data)
+    return res.data
   }
 
   async editBug(bugId, body) {

@@ -1,11 +1,14 @@
 <template>
-  <div class="col-4 border bg-light shadow rounded p-1"
-       :style="{'text-decoration': bug.closed ? 'line-through' : ''}"
+  <router-link :to="{name: 'Details', params: {id: bug.id}}"
+               class="col-4 click border bg-light shadow rounded p-1"
+               :style="{'text-decoration': bug.closed ? 'line-through' : ''}"
+               @click="setActive"
   >
+    <i class="mdi mdi-bug red" aria-hidden="true" v-if="!bug.closed"></i>
     {{ bug.title }}
-  </div>
+  </router-link>
   <div class="col-3 border bg-light shadow rounded p-1">
-    {{ bug.creator.name }}
+    {{ bug.creator !== undefined ? bug.creator.name : bug.creatorId }}
   </div>
   <div class="col-3 border bg-light shadow rounded p-1"
        :style="{'color': bug.closed ? 'red' : 'green'}"
@@ -13,12 +16,13 @@
     {{ bug.closed ? 'closed' : 'open' }}
   </div>
   <div class="col-2 border bg-light shadow rounded p-1">
-    {{ state.date[0].split('-') }}
+    {{ state.date[0].split('-').sort((a,b) => a-b).join('-') }}
   </div>
 </template>
 
 <script>
 import { reactive } from '@vue/reactivity'
+import { AppState } from '../AppState'
 export default {
   props: {
     bug: { type: Object, required: true }
@@ -28,12 +32,20 @@ export default {
       date: props.bug.updatedAt.split('T')
     })
     return {
-      state
+      state,
+      setActive() {
+        AppState.activeBug = props.bug
+      }
     }
   }
 }
 </script>
 
 <style>
-
+.click{
+  cursor: pointer;
+}
+.red{
+  color: red;
+}
 </style>
