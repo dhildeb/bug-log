@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <BugDetails :bug="state.bug" v-if="state.bug" />
-    <div class="row border-bottom bg-secondary shadow rounded justify-content-between my-5">
+    <BugDetails :bug="state.bug" v-if="state.bug.id" />
+    <div class="row border-bottom bg-secondary shadow-sm rounded justify-content-between mt-5">
       <h3 class="p-3">
         Notes
       </h3>
@@ -10,6 +10,16 @@
       </div>
     </div>
     <Note v-for="note in state.notes" :key="note.id" :note="note" />
+    <div class="row">
+      <div class="col-10"></div>
+      <div class="col-2">
+        <router-link :to="{name: 'Bugs'}">
+          <button class="btn btn-danger">
+            Back
+          </button>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,7 +39,7 @@ export default {
     })
     watchEffect(() => {
       bugService.getNotes(route.params.id)
-      if (state.bugs === undefined) {
+      if (!state.bug.id) {
         bugService.getOne(route.params.id)
       }
     })

@@ -13,7 +13,7 @@ class BugService {
   }
 
   async getNotes(bugId) {
-    const res = await api.get('api/' + bugId + '/notes')
+    const res = await api.get('api/bugs/' + bugId + '/notes')
     AppState.notes = res.data
   }
 
@@ -30,9 +30,9 @@ class BugService {
   }
 
   async closeBug(bugId) {
-    const res = await api.delete(bugId)
-    const bugIndex = AppState.bugs.findIndex(bugId)
-    AppState.bugs.splice(bugIndex, 1, res.data)
+    const res = await api.delete('api/bugs/' + bugId)
+    console.log(res.data)
+    AppState.activeBug = res.data
   }
 }
 

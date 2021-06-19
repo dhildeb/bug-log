@@ -43,21 +43,23 @@ import { AppState } from '../AppState'
 import $ from 'jquery'
 import { noteService } from '../services/noteService'
 import Notification from '../utils/Notification'
+import { useRoute } from 'vue-router'
 export default {
   setup() {
+    const route = useRoute()
     const state = reactive({
       newNote: {
-        creator: AppState.account
+        creator: AppState.account,
+        bug: route.params.id
       }
     })
     return {
       state,
-      async createnote() {
+      async createNote() {
         try {
-          const note = await noteService.createNote(state.newNote)
+          await noteService.createNote(state.newNote)
           $('#create-note-modal').modal('hide')
           state.newNote.body = ''
-          console.log(note)
         } catch (error) {
           Notification.toast(error.message)
         }

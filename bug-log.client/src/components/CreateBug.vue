@@ -64,7 +64,6 @@ export default {
           $('#create-bug-modal').modal('hide')
           state.newBug.title = ''
           state.newBug.description = ''
-          console.log(bug)
           router.push(`/bug/${bug.id}`)
         } catch (error) {
           Notification.toast(error.message)

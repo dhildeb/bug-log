@@ -32,7 +32,7 @@ class BugService {
   }
 
   async closeBug(bugId, userId) {
-    const bug = await dbContext.Bug.findByIdAndUpdate(bugId, { closed: true, creatorId: userId }, { new: true, runValidators: true })
+    const bug = await dbContext.Bug.findByIdAndUpdate(bugId, { closed: true, creatorId: userId }, { new: true, runValidators: true }).populate('creator')
     return bug
   }
 }
