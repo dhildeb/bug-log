@@ -7,7 +7,7 @@ export class NoteController extends BaseController {
     super('api/notes')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('/:id', this.createNote)
+      .post('', this.createNote)
       .delete('/:id', this.deleteNote)
   }
 

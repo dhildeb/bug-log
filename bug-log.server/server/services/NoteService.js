@@ -2,8 +2,8 @@ import { dbContext } from '../db/DbContext'
 
 class NoteService {
   async createNote(body) {
-    const note = await dbContext.Note.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
-    return note
+    const newNote = await dbContext.Note.create(body)
+    return newNote
   }
 
   async deleteNote(noteId, userId) {
