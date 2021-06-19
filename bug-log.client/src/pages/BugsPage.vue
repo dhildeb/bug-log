@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-    <div class="row">
-      <CreateBug />
-    </div>
     <h1>Current Bugs</h1>
     <div class="row">
       <div class="col-4 border bg-secondary shadow rounded p-1">
@@ -12,6 +9,7 @@
         <b>reported by</b>
       </div>
       <div class="col-3 click border bg-secondary shadow rounded p-1"
+           title="Filter by Status"
            @click="filterStatus"
       >
         <b>status <i class="mdi mdi-filter-variant" aria-hidden="true"></i></b>

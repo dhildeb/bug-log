@@ -33,11 +33,11 @@
   </div>
   <div class="row shadow rounded border">
     <div class="col-12 text-center">
-      <h2 class="p-3 border-bottom">
+      <h2 class="p-3 border-bottom text-wrap">
         {{ state.bug.title }}
       </h2>
     </div>
-    <div class="col-12 ml-5">
+    <div class="col-10 ml-5 text-wrap">
       <p>{{ state.bug.description }}</p>
     </div>
   </div>
@@ -82,5 +82,8 @@ export default {
   display: flex;
     justify-content: flex-end;
     margin-top: -21px;
+}
+*{
+  word-wrap: break-word;
 }
 </style>

@@ -29,7 +29,8 @@
           </router-link>
         </li>
       </ul>
-      <span class="navbar-text">
+      <CreateBug />
+      <span class="navbar-text pl-5">
         <button
           class="btn btn-outline-primary text-uppercase"
           @click="login"
