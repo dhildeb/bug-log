@@ -1,15 +1,15 @@
 <template>
   <div class="row border my-2 shadow-sm rounded">
-    <div class="col-3 p-4">
+    <div class="col-md-3 col-10 p-4 d-flex flex-column border-bottom" v-if="note.creator">
       <img class="rounded-circle" :src="note.creator.picture" alt="profile">
       <span>{{ note.creator.name }}</span>
     </div>
-    <div class="col-8 p-5">
+    <div class="col-md-8 order-md-1 order-3 p-5">
       <p>
         "{{ note.body }}"
       </p>
     </div>
-    <i title="Delete Note" class="click mdi mdi-trash-can align-self-center" @click="deleteNote"></i>
+    <i title="Delete Note" class="col-1 order-md-3 click mdi mdi-trash-can align-self-center" @click="deleteNote"></i>
   </div>
 </template>
 

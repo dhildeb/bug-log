@@ -25,8 +25,7 @@ class BugService {
 
   async editBug(bugId, body) {
     const res = await api.put('api/bugs/' + bugId, body)
-    const bugIndex = AppState.bugs.findIndex(bugId)
-    AppState.bugs.splice(bugIndex, 1, res.data)
+    AppState.activeBug = res.data
   }
 
   async closeBug(bugId) {
