@@ -9,7 +9,7 @@
         "{{ note.body }}"
       </p>
     </div>
-    <i title="Delete Note" class="col-1 order-md-3 click mdi mdi-trash-can align-self-center" @click="deleteNote"></i>
+    <i title="Delete Note" class="col-1 order-md-3 click mdi mdi-trash-can align-self-center" @click="deleteNote" v-if="state.account.id === note.creator.id"></i>
   </div>
 </template>
 
@@ -17,13 +17,15 @@
 import { reactive } from '@vue/reactivity'
 import { noteService } from '../services/noteService'
 import Notification from '../utils/Notification'
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
 export default {
   props: {
     note: { type: Object, required: true }
   },
   setup(props) {
     const state = reactive({
-
+      account: computed(() => AppState.account)
     })
     return {
       state,

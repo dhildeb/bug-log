@@ -3,7 +3,7 @@
     <h1 class="title">
       Welcome to Bug Log
     </h1>
-    <div v-if="state.account">
+    <div v-if="state.account.id">
       <router-link to="Bugs">
         <button class="btn btn-primary">
           Go to Bugs
@@ -14,7 +14,7 @@
       <h2 class="title">
         Please Sign in
       </h2>
-      <button class="btn btn-primary">
+      <button class="btn btn-primary" @click="login">
         Sign in
       </button>
     </div>
@@ -25,6 +25,7 @@
 import { reactive } from '@vue/reactivity'
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { AuthService } from '../services/AuthService'
 export default {
   name: 'Home',
   setup() {
@@ -32,7 +33,10 @@ export default {
       account: computed(() => AppState.account)
     })
     return {
-      state
+      state,
+      async login() {
+        await AuthService.loginWithPopup()
+      }
     }
   }
 }

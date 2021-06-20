@@ -1,10 +1,10 @@
 <template>
   <!-- Modal -->
-  <div class="modal fade" id="create-bug-modal" tabindex="-1" aria-labelledby="create-bug-modalLabel" aria-hidden="true">
+  <div class="modal fade" id="edit-bug-modal" tabindex="-1" aria-labelledby="edit-bug-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-secondary">
-          <h5 class="modal-title" id="create-bug-modalLabel">
+          <h5 class="modal-title" id="edit-bug-modalLabel">
             Edit Bug
           </h5>
           <button type="button" title="close" class="close" data-dismiss="modal" aria-label="Close">
@@ -54,7 +54,7 @@ export default {
       async editBug() {
         try {
           bugService.editBug(props.bug.id, state.newBug)
-          $('#create-bug-modal').modal('hide')
+          $('#edit-bug-modal').modal('hide')
         } catch (error) {
           Notification.toast(error.message)
         }

@@ -29,7 +29,7 @@
           </router-link>
         </li>
       </ul>
-      <CreateBug />
+      <CreateBug v-if="state.account.id" />
       <span class="navbar-text pl-5">
         <button
           class="btn btn-outline-primary text-uppercase"
@@ -83,7 +83,8 @@ export default {
   name: 'Navbar',
   setup() {
     const state = reactive({
-      dropOpen: false
+      dropOpen: false,
+      account: computed(() => AppState.account)
     })
     return {
       state,

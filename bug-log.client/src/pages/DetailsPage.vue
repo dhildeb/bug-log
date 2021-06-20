@@ -38,7 +38,9 @@ export default {
       notes: computed(() => AppState.notes)
     })
     watchEffect(() => {
-      bugService.getNotes(route.params.id)
+      if (route.params.id) {
+        bugService.getNotes(route.params.id)
+      }
       if (!state.bug.id) {
         bugService.getOne(route.params.id)
       }
@@ -51,5 +53,8 @@ export default {
 </script>
 
 <style>
-
+.container{
+  background-image:  url('https://static.wixstatic.com/media/5922a2_856c3188261243d5a5bfce02aad36bca~mv2.gif');
+  background-repeat: no-repeat;
+}
 </style>

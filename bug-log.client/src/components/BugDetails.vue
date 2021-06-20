@@ -25,7 +25,7 @@
         <button class="text-danger dropdown-item" @click="closeBug">
           close bug
         </button>
-        <button class="text-warning dropdown-item" data-toggle="modal" data-target="#create-bug-modal">
+        <button class="text-warning dropdown-item" data-toggle="modal" data-target="#edit-bug-modal">
           edit bug
         </button>
       </div>
