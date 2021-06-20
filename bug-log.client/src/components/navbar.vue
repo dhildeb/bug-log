@@ -1,5 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <i class="mdi mdi-bug mr-2"></i>
     <button
       class="navbar-toggler"
       type="button"
@@ -43,7 +44,7 @@
               :src="user.picture"
               alt="user photo"
               height="40"
-              class="rounded"
+              class="rounded-circle"
             />
             <span class="mx-3">{{ user.name }}</span>
           </div>

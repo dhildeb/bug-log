@@ -1,6 +1,6 @@
 <template>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-bug-modal">
+  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#create-bug-modal">
     Report Bug
   </button>
 
