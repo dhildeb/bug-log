@@ -14,9 +14,9 @@
       <h2 class="title">
         Please Sign in
       </h2>
-      <button class="btn btn-primary" @click="login">
+      <!-- <button class="btn btn-info" @click="login">
         Sign in
-      </button>
+      </button> -->
     </div>
   </div>
 </template>

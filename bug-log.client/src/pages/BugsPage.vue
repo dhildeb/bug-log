@@ -1,20 +1,23 @@
 <template>
   <div class="container">
-    <h1>Current Bugs</h1>
-    <div class="row">
-      <div class="col-4 border bg-secondary shadow rounded p-1">
+    <div class="row justify-content-between">
+      <h1>Current Bugs</h1>
+      <h2>{{ state.bugs.filter(b => !b.closed).length + '/'+ state.bugs.length }}</h2>
+    </div>
+    <div class="row pb-5">
+      <div class="col-4 border bg-secondary shadow-sm rounded p-1">
         <b>bug title</b>
       </div>
-      <div class="col-3 border bg-secondary shadow rounded p-1">
+      <div class="col-3 border bg-secondary shadow-sm rounded p-1">
         <b>reported by</b>
       </div>
-      <div class="col-3 click border bg-secondary shadow rounded p-1"
+      <div class="col-2 click border bg-secondary shadow-sm rounded p-1"
            title="Filter by Status"
            @click="filterStatus"
       >
         <b>status <i class="mdi mdi-filter-variant" aria-hidden="true"></i></b>
       </div>
-      <div class="col-2 border bg-secondary shadow rounded p-1">
+      <div class="col-3 border bg-secondary shadow-sm rounded p-1">
         <b>last modified</b>
       </div>
       <Bug v-for="bug in state.bugs" :key="bug.id" :bug="bug" />
@@ -58,3 +61,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

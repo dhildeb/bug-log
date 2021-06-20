@@ -1,21 +1,21 @@
 <template>
   <router-link :to="{name: 'Details', params: {id: bug.id}}"
-               class="col-4 click border bg-light shadow rounded p-1"
+               class="col-4 click border bg-light shadow-sm rounded p-1 text-red"
                :style="{'text-decoration': bug.closed ? 'line-through' : ''}"
                @click="setActive"
   >
     <i class="mdi mdi-bug red" aria-hidden="true" v-if="!bug.closed"></i>
     {{ bug.title }}
   </router-link>
-  <div class="col-3 border bg-light shadow rounded p-1">
+  <div class="col-3 border bg-light shadow-sm rounded p-1">
     {{ bug.creator !== undefined ? bug.creator.name : bug.creatorId }}
   </div>
-  <div class="col-3 border bg-light shadow rounded p-1"
+  <div class="col-2 border bg-light shadow-sm rounded p-1"
        :style="{'color': bug.closed ? 'red' : 'green'}"
   >
     {{ bug.closed ? 'closed' : 'open' }}
   </div>
-  <div class="col-2 border bg-light shadow rounded p-1">
+  <div class="col-3 border bg-light shadow-sm rounded p-1">
     {{ state.date[0].split('-').sort((a,b) => a-b).join('-') }}
   </div>
 </template>
