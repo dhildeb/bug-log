@@ -20,7 +20,7 @@
           <form @submit.prevent="createNote">
             <div class="form-group">
               <label class="sr-only" for="note title"></label>
-              <input v-model="state.newNote.body" type="text" placeholder="Title here..." required>
+              <textarea class="w-75" v-model="state.newNote.body" type="text" placeholder="Note here..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">
               create note

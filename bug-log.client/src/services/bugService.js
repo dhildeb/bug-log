@@ -32,6 +32,8 @@ class BugService {
     const res = await api.delete('api/bugs/' + bugId)
     console.log(res.data)
     AppState.activeBug = res.data
+    const bugIndex = AppState.bugs.findIndex(b => b.id === bugId)
+    AppState.bugs.splice(bugIndex, 1, res.data)
   }
 }
 

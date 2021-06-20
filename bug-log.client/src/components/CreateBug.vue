@@ -24,7 +24,13 @@
             </div>
             <div class="form-group">
               <label class="sr-only" for="bug description"></label>
-              <input v-model="state.newBug.description" type="text" placeholder="Description here..." required>
+              <textarea class="w-75"
+                        v-model="state.newBug.description"
+                        type="textArea"
+                        rows="4"
+                        placeholder="Description here..."
+                        required
+              ></textarea>
             </div>
             <button type="submit" class="btn btn-primary">
               Report Bug
@@ -61,9 +67,10 @@ export default {
       async createBug() {
         try {
           const bug = await bugService.createBug(state.newBug)
-          $('#create-bug-modal').modal('hide')
+          AppState.activeBug = bug
           state.newBug.title = ''
           state.newBug.description = ''
+          $('#create-bug-modal').modal('hide')
           router.push(`/bug/${bug.id}`)
         } catch (error) {
           Notification.toast(error.message)

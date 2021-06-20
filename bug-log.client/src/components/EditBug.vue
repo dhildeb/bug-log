@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
               <label class="sr-only" for="bug description"></label>
-              <input v-model="state.newBug.description" type="text" placeholder="Description here...">
+              <textarea class="w-75" v-model="state.newBug.description" type="text" placeholder="Description here..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary">
               Submit Changes
@@ -41,13 +41,17 @@ import { reactive } from '@vue/reactivity'
 import $ from 'jquery'
 import Notification from '../utils/Notification'
 import { bugService } from '../services/bugService'
+import { AppState } from '../AppState'
 export default {
   props: {
     bug: { type: Object, required: true }
   },
   setup(props) {
     const state = reactive({
-      newBug: {}
+      newBug: {
+        title: AppState.activeBug.title,
+        description: AppState.activeBug.description
+      }
     })
     return {
       state,
