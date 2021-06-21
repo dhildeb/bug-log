@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="state.bug.closed ? 'container no-bug' : 'container bug' ">
     <BugDetails :bug="state.bug" v-if="state.bug.id" />
     <div class="row border-bottom bg-secondary shadow-sm rounded justify-content-between mt-5">
       <h3 class="p-3">
@@ -53,8 +53,12 @@ export default {
 </script>
 
 <style>
-.container{
+.bug{
   background-image:  url('https://static.wixstatic.com/media/5922a2_856c3188261243d5a5bfce02aad36bca~mv2.gif');
+  background-repeat: no-repeat;
+}
+.no-bug{
+  background-image: url('../assets/img/deadbug.png');
   background-repeat: no-repeat;
 }
 </style>

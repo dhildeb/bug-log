@@ -5,7 +5,7 @@
     </h1>
     <div v-if="state.account.id">
       <router-link to="Bugs">
-        <button class="btn btn-primary">
+        <button class="btn btn-primary text-dark">
           Go to Bugs
         </button>
       </router-link>

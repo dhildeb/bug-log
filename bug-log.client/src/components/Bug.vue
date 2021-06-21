@@ -7,8 +7,11 @@
     <i class="mdi mdi-bug red" aria-hidden="true" v-if="!bug.closed"></i>
     {{ bug.title }}
   </router-link>
-  <div class="col-3 border bg-light shadow-sm rounded p-1">
+  <div class="col-3 border bg-light shadow-sm rounded p-1 d-none d-md-block">
     {{ bug.creator !== undefined ? bug.creator.name : bug.creatorId }}
+  </div>
+  <div class="col-3 border bg-light shadow-sm rounded p-1 d-md-none">
+    {{ bug.creator !== undefined ? state.name[0] : bug.creatorId }}
   </div>
   <div class="col-2 border bg-light shadow-sm rounded p-1"
        :style="{'color': bug.closed ? 'red' : 'green'}"
@@ -16,7 +19,7 @@
     {{ bug.closed ? 'closed' : 'open' }}
   </div>
   <div class="col-3 border bg-light shadow-sm rounded p-1">
-    {{ state.date[0].split('-').sort((a,b) => a-b).join('-') }}
+    {{ `${state.date[1]} ${state.date[2]} ${state.date[3]}` }}
   </div>
 </template>
 
@@ -29,7 +32,8 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      date: props.bug.updatedAt.split('T')
+      date: (new Date(props.bug.updatedAt)).toString().split(' '),
+      name: props.bug.creator.name.split('@')
     })
     return {
       state,

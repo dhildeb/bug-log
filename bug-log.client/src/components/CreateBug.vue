@@ -71,7 +71,7 @@ export default {
           state.newBug.title = ''
           state.newBug.description = ''
           $('#create-bug-modal').modal('hide')
-          router.push(`/bug/${bug.id}`)
+          router.push({ path: `/bug/${bug.id}` })
         } catch (error) {
           Notification.toast(error.message)
         }
