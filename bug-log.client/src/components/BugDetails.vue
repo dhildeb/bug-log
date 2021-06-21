@@ -48,17 +48,24 @@
 import { reactive } from '@vue/reactivity'
 import Notification from '../utils/Notification'
 import { bugService } from '../services/bugService'
-import { computed } from '@vue/runtime-core'
+import { computed, watchEffect } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { useRoute } from 'vue-router'
 export default {
   props: {
     bug: { type: Object, required: true }
   },
   setup(props) {
+    const route = useRoute()
     const state = reactive({
       // date: props.bug.updatedAt.split('T')
       account: computed(() => AppState.account),
       bug: computed(() => AppState.activeBug)
+    })
+    watchEffect(() => {
+      if (route.params.id) {
+        bugService.getNotes(route.params.id)
+      }
     })
     return {
       state,

@@ -38,9 +38,6 @@ export default {
       notes: computed(() => AppState.notes)
     })
     watchEffect(() => {
-      if (route.params.id) {
-        bugService.getNotes(route.params.id)
-      }
       if (!state.bug.id) {
         bugService.getOne(route.params.id)
       }
