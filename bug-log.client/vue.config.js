@@ -1,6 +1,6 @@
 module.exports = {
   // NOTE to host on github publicPath: '/YOUR-GITHUB-REPOSITORY-NAME/',
-  publicPath: '/',
-  outputDir: 'docs',
+  publicPath: '/bug-log',
+  outputDir: '../bug-log.server',
   productionSourceMap: false
 }
