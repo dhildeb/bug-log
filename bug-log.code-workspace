@@ -2,11 +2,11 @@
   "folders": [
     {
       "path": "bug-log.client",
-      "name": "bug-log.client"
+      "name": "client"
     },
     {
       "path": "bug-log.server",
-      "name": "bug-log.server"
+      "name": "server"
     }
   ],
   "settings": {
