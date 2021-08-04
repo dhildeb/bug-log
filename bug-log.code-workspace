@@ -1,13 +1,12 @@
-
 {
   "folders": [
     {
       "path": "bug-log.client",
-      "name": "client"
+      "name": "bug-out.client"
     },
     {
-      "path": "bug-log.server",
-      "name": "server"
+      "path": "bug-log",
+      "name": "bug-log"
     }
   ],
   "settings": {
