@@ -16,13 +16,6 @@ export class Paths {
     return this.Server + '/controllers'
   }
 
-
-
-
-
-
-  
-
   static get Handlers() {
     return this.Server + '/handlers'
   }
