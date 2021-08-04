@@ -5,11 +5,11 @@ import { logger } from './server/utils/Logger'
 
 export class Paths {
   static get Public() {
-    return path.join(__dirname, 'client')
+    return path.join(__dirname, 'bug-log.client')
   }
 
   static get Server() {
-    return path.join(__dirname, 'server')
+    return path.join(__dirname, 'bug-log.server')
   }
 
   static get Controllers() {
